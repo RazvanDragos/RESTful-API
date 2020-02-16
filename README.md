@@ -3,4 +3,4 @@ A RESTful API
 
 npm install -g nodemon
 
-npm install --joi
+npm install joi
