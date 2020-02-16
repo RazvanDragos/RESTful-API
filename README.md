@@ -1,12 +1,12 @@
 # RESTful-API
 A RESTful API 
 
-#Install dependencies
+# Install dependencies
 npm install -g nodemon
 
 npm install joi
 
-#Start API
+# Start API
 nodemon index.js
 
 
