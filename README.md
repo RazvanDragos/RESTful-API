@@ -1,6 +1,6 @@
 # RESTful-API
 A RESTful API 
 
-npm i --nodemon
+npm install -g nodemon
 
-npm i --joi
+npm install --joi
