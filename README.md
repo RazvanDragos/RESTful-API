@@ -2,11 +2,15 @@
 A RESTful API 
 
 # Install dependencies
+npm install express --save
+
 npm install -g nodemon
 
 npm install joi
 
+npm install amqplib
+
 # Start API
-nodemon index.js
+nodemon src/index.js
 
 
