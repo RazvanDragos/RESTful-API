@@ -14,9 +14,16 @@ const products = [
     { id: 8, name: 'Desktop office', details: 'This is a office desktop', price: 3500}
 ];
 
+const cart = [];
+
 //get all products
 app.get('/api/products', (req, res) => {
     res.send(products);
+})
+
+//get cart elements
+app.get('/api/cart', (req, res) => {
+    res.send(cart);
 })
 
 //get product by id
@@ -45,6 +52,15 @@ app.post('/api/products', (req, res) => {
     products.push(product); //add to products list
     res.send(product);
 });
+
+//add product in cart
+app.post('/api/cart/:id/:qt', (req, res) => {
+    const product = products.find(c => c.id === parseInt(req.params.id));
+    const quantity = req.params.qt;
+    const cartProduct = {product: product, quantity: quantity, totalPrice: product.price * quantity};
+    cart.push(cartProduct); //add product to cart
+    res.send(cart);
+})
 
 //update product
 app.put('/api/products/:id', (req, res) => {
@@ -85,6 +101,23 @@ app.delete('/api/products/:id', (req, res) => {
 
     //return the same product
     res.send(product);
+});
+
+//delete product from cart
+app.delete('/api/cart/:id', (req, res) => {
+    //Lookup the product
+    //if not existing, return 404
+    const product = cart.find(c => c.id === parseInt(req.params.id));
+    if (!product) {
+        res.status(404).send('The product with the given id was not found!');
+    }
+
+    //Delete
+    const index = cart.indexOf(product);
+    cart.splice(index, 1);
+
+    //return the same product
+    res.send(cart);
 })
 
 function validateProduct(product) {
